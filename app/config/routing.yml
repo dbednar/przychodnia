@@ -1,0 +1,4 @@
+list:
+    resource: '@ListBundle/Controller/'
+    prefix:   /
+    type:     annotation

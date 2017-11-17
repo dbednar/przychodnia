@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+{% block title %}Dodaj Lekarza{% endblock %}
+{% block body %}
+    <div class="container">
+       
+        {% if message is defined %}
+         <p class="bg-success">  {{message}}   </p>
+        <p><a role="button" class="btn btn-primary" href="{{path('doctor')}}" >Powrót do listy lekarzy</a></p>            
+        {% endif %}
+        {% if form is defined %}
+             <h2>Dodaj Lekarza </h2>
+       {{ form_start(form) }}
+    
+{{ form_end(form) }}
+{% endif  %}
+    </div>  
+    
+    
+{% endblock %}    

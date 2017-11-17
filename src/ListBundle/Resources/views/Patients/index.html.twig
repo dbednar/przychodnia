@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+{% block title %}Pacjenci{% endblock %}
+{% block body %}
+   
+
+    <div class="container">
+        
+        <h2>Lista Pacjentów </h2>
+        <p class="bg-success">{% if message is defined %}  {{message}}  {% endif %} </p>
+        <p><a role="button" class="btn btn-primary" href="{{path('add_patient')}}" >Dodaj nowego pacjenta</a></p>            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Numer telefonu</th>
+                    <th>E-mail</th>
+                    <th>Funkcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr style="font-size:15px">
+                        <td>{{patient.name}}</td>
+                        <td>{{patient.surname}}</td>
+                        <td>{{patient.phone}}</td>
+                        <td>{{patient.mail}}</td>
+                        <td>
+                           <a role="button" class="btn btn-success" href="{{path('add_patient',{'patient_id':patient.id})  }}" > Edytuj</a> 
+                           <a role="button" class="btn btn-success"  href="{{path('remove_patient',{'patient_id':patient.id})  }}"> Usuń</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>   
+
+
+{% endblock %}

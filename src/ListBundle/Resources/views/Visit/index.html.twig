@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+{% block title %}Wizyty{% endblock %}
+{% block body %}
+   
+
+    <div class="container">
+        
+        <h2>Lista Wizyt </h2>
+        <p class="bg-success">{% if message is defined %}  {{message}}  {% endif %} </p>
+        <p><a role="button" class="btn btn-primary" href="{{path('add_visit')}}" >Dodaj wizytę</a></p>            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Imię i Nazwisko Lekarza</th>
+                    <th>Imię i Nazwisko  Pacjeta</th>
+                    <th>Data i Godzina Wizyty</th>
+                    <th>Funkcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visit in visits %}
+              
+                    <tr style="font-size:15px">
+                        <td>{{ visit.doctor.name }}  {{ visit.doctor.surname }}</td>
+                        <td>{{ visit.patient.name }}  {{ visit.patient.surname }}</td>
+                        <td>{{visit.visitDate |date ("Y-m-d  H i")}}</td>
+                        <td>
+                           <a role="button" class="btn btn-success" href="{{path('add_visit',{'visit_id':visit.id})  }}" > Edytuj</a> 
+                           <a role="button" class="btn btn-success"  href="{{path('remove_visit',{'visit_id':visit.id})  }}"> Usuń</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>   
+
+
+{% endblock %}
